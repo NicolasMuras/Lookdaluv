@@ -30,9 +30,9 @@ function scroll(e){
         return;
     }
         
-    if (position == 0 || position == -3){
+    if (position == 0 || position == -100){
         
-        if (position == -3){
+        if (position == -100){
             
             $(texto_1).animate({
                 'opacity': 0,
@@ -51,7 +51,7 @@ function scroll(e){
             position = 0;
 
         }else{
-            if (e.deltaY != 3){
+            if (e.deltaY != 100){
 
                 $(texto_1).animate({
                     'opacity': 1,
@@ -82,10 +82,10 @@ function scroll(e){
 
         console.log(position);
 
-    }else if (position == 3){
+    }else if (position == 100){
         
-        if (e.deltaY != 3){
-            
+        if (e.deltaY != 100){
+
             $(texto_1).animate({
                 'opacity': 0,
             }, 800);
@@ -123,9 +123,9 @@ function scroll(e){
         position = position + (-e.deltaY);
         console.log(position);
 
-    }else if (position == 6){
+    }else if (position == 200){
 
-        if (e.deltaY != 3){
+        if (e.deltaY != 100){
             $(texto_1).animate({
                 'opacity': 0,
             }, 800);
@@ -165,9 +165,9 @@ function scroll(e){
     
         console.log(position);
 
-    }else if (position == 9){
+    }else if (position == 300){
 
-        if (e.deltaY != 3){
+        if (e.deltaY != 100){
             $(texto_2).animate({
                 'opacity': 0,
             }, 800);
@@ -210,8 +210,8 @@ function scroll(e){
 
         position = position + (-e.deltaY);
     
-        if (position == 12){
-            position = 9;
+        if (position == 400){
+            position = 300;
         }
         console.log(position);
     }
