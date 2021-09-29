@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/main_theme.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/normalize.css">
+    </head>
+    <body>
+        <div class="background-box">
+            
+            <div class="titlebar">
+                <h1 class="title">LOOKDALUV</h1>
+            </div>
+            <div class="content-box">
+                <div class="login-box">
+                    <form method="post" class="form-style">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="L O G I N" class="btn-login">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+    <footer class="footer-style">
+        <!-- <p>TODOS LOS DERECHOS RESERVADOS: A M A T E R A S U & C O</p> -->
+    </footer>
+</html>
