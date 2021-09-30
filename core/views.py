@@ -12,8 +12,12 @@ def index(request):
     return render(request, 'index.html', context)
 
 def home(request):
+    views = 5
 
-    return HttpResponse("ESTA ES LA PAGINA HOME DEL USUARIO, DONDE TIENE LOS MODULOS PARA APRENDER")
+    context = {
+        'views': views,
+    }
+    return render(request, 'home.html', context)
 
 def profile(request, id):
 

@@ -1,222 +1,173 @@
 window.addEventListener('wheel', scroll);
 
-let position = 0;
-var scrollDisabled = false;
 var texto_1 = document.getElementById("text_1");
 var texto_2 = document.getElementById("text_2");
 var texto_3 = document.getElementById("text_3");
+var texto_4 = document.getElementById("text_4");
+var texto_5 = document.getElementById("text_5");
+var texto_6 = document.getElementById("text_6");
 
 var title = document.getElementById("title-id");
 
-var img = document.getElementById("id-img");
-var img_2 = document.getElementById("id-img-2");
+var logo = document.getElementById("logo");
 
-$(texto_1).css({'opacity':0});
-$(texto_2).css({'opacity':0});
-$(texto_3).css({'opacity':0});
+$(title).css({'top': 350});
 
-$(title).css({'top': 320});
+let elements = [
+    [texto_1, logo],
+    [texto_2, logo],
+    [texto_3, logo],
+    [texto_4, logo],
+    [texto_5, logo],
+    [texto_6, logo],
+];
 
-$(img).css({'opacity':0});
-$(img).css({'width': 0});
-$(img).css({'height': 0});
+for (let group of elements){
+     for (let index of group){
+        $(index).css({'opacity': 0});
+    } 
+};
 
-$(img_2).css({'opacity':0});
-$(img_2).css({'width': 0});
-$(img_2).css({'height': 0});
+var position = 0;
+let transition_delay = 1000;
+var scrollDisabled = false;
+let counter = 0;
 
-function scroll(e){
+function scroll (e){
+    
+    if (counter == 0){
+        $(title).animate({
+            'top': 50,
+        }, 500);
+        counter = counter + 1;
+    }
+
     if (scrollDisabled){
         return;
     }
-        
-    if (position == 0 || position == -100){
-        
-        if (position == -100){
-            
-            $(texto_1).animate({
-                'opacity': 0,
-            }, 800);
 
-            $(title).animate({
-                'top': 320,
-            }, 500);
-
-            $(img_2).animate({
-                'opacity': 0,
-                'width': 0,
-                'height': 0,
-            }, 1000);
-
-            position = 0;
-
-        }else{
-            if (e.deltaY != 100){
-
-                $(texto_1).animate({
-                    'opacity': 1,
-                }, 800);
-
-                $(title).animate({
-                    'top': 50,
-                }, 500);
-
-                $(img_2).animate({
-                    'opacity': 0,
-                    'width': 200,
-                    'height': 200,
-                }, 100);
-    
-                $(img_2).animate({
-                    'opacity': 1,
-                    'width': 300,
-                    'height': 300,
-                }, 100);
-        
-                $(texto_2).animate({
-                    'opacity': 0,
-                }, 800);
-            }
-            position = position + (-e.deltaY);
-        }
-
-        console.log(position);
-
-    }else if (position == 100){
-        
-        if (e.deltaY != 100){
-
-            $(texto_1).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(img_2).animate({
-                'opacity': 0,
-                'width': 0,
-                'height': 0,
-            }, 1000);
-            
-            $(texto_2).animate({
-                'opacity': 1,
-            }, 800);
-
-        }else{
-            $(texto_1).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(texto_2).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(title).animate({
-                'top': 320,
-            }, 500);
-
-            $(img_2).animate({
-                'opacity': 0,
-                'width': 0,
-                'height': 0,
-            }, 1000);
-        }
-
-        position = position + (-e.deltaY);
-        console.log(position);
-
-    }else if (position == 200){
-
-        if (e.deltaY != 100){
-            $(texto_1).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(texto_2).animate({
-                'opacity': 1,
-            }, 800);
-
-        }else{
-            $(texto_1).animate({
-                'opacity': 1,
-            }, 800);
-
-            $(img_2).animate({
-                'opacity': 1,
-                'width': 300,
-                'height': 300,
-            }, 500);
-
-            $(texto_2).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(texto_3).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(img).animate({
-                'opacity': 0,
-                'width': 0,
-                'height': 0,
-            }, 1000);
-
-        }
-
-        position = position + (-e.deltaY);
-    
-        console.log(position);
-
-    }else if (position == 300){
-
-        if (e.deltaY != 100){
-            $(texto_2).animate({
-                'opacity': 0,
-            }, 800);
-    
-            $(img).animate({
-                'opacity': 0,
-                'width': 300,
-                'height': 300,
-            }, 100);
-
-            $(img).animate({
-                'opacity': 1,
-                'width': 400,
-                'height': 400,
-            }, 100);
-
-            $(texto_3).animate({
-                'opacity': 1,
-            }, 8000);
-
-        }else{
-            $(texto_1).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(texto_2).animate({
-                'opacity': 1,
-            }, 800);
-
-            $(texto_3).animate({
-                'opacity': 0,
-            }, 800);
-
-            $(img).animate({
-                'opacity': 0,
-                'width': 0,
-                'height': 0,
-            }, 1000);
-        }
-
-        position = position + (-e.deltaY);
-    
-        if (position == 400){
-            position = 300;
-        }
-        console.log(position);
+    if (position == 0 || position == -1){
+        scrollFirstStep(e);
+    } else if (position == elements.length){
+        console.log("enter")
+        scrollLastStep(e);
+    } else {
+        scrollStep(e);
     }
 
-    
     scrollDisabled = true
-    setTimeout(function(){scrollDisabled = false;}, 1000);
+    setTimeout(function(){scrollDisabled = false;}, 800);
+}
+
+function scrollFirstStep (e){
+    if (position == -1){
+            
+        for (let content in elements[position]){
+            $(elements[position][content]).animate({
+                'opacity': 0,
+            }, transition_delay);
+        }
+
+        position = 0;
+
+    }else{
+        if (Math.sign(e.deltaY) == -1){
+
+            for (let content in elements[position]){
+                $(elements[position][content]).animate({
+                    'opacity': 1,
+                }, transition_delay);
+            }
+    
+            for (let content in elements[position]){
+                $(elements[position+1][content]).animate({
+                    'opacity': 0,
+                }, transition_delay);
+            }
+            position = position + 1;
+        }
+    }
+}
+
+function scrollStep(e){
+
+    if (Math.sign(e.deltaY) == -1){
+
+        for (let content in elements[position]){
+            $(elements[position-1][content]).animate({
+                'opacity': 0,
+            }, transition_delay);
+        }
+
+        for (let content in elements[position]){
+            $(elements[position][content]).animate({
+                'opacity': 1,
+            }, transition_delay);
+        }
+
+        for (let content in elements[position]){
+            try {
+                let hide_next = elements[position+1][content];
+                $(hide_next).animate({
+                    'opacity': 0,
+                }, transition_delay);
+            } catch (error){
+
+            }
+        }
+
+        position = position + 1;
+
+    } else {
+
+        for (let content in elements[position]){
+            $(elements[position-1][content]).animate({
+                'opacity': 0,
+            }, transition_delay);
+        }
+
+        for (let content in elements[position]){
+            $(elements[position][content]).animate({
+                'opacity': 0,
+            }, transition_delay);
+        }
+
+        for (let content in elements[position]){
+            try {
+                let hide_next = elements[position-2][content];
+                $(hide_next).animate({
+                    'opacity': 1,
+                }, transition_delay);
+            } catch (error){
+
+            }
+        }
+
+        position = position - 1;
+    }
+    console.log("final: " + position)
+}
+
+function scrollLastStep(e){
+    if (Math.sign(e.deltaY) == 1){
+        console.log("here")
+        for (let content in elements[elements.length-1]){
+            $(elements[position-1][content]).animate({
+                'opacity': 0,
+            }, transition_delay);
+        }
+
+        for (let content in elements[elements.length-2]){
+            try {
+                let hide_next = elements[position-2][content];
+                $(hide_next).animate({
+                    'opacity': 1,
+                }, transition_delay);
+            } catch (error){
+
+            }
+        }
+        position = position - 1;
+    }
+
 }

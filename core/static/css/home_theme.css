@@ -1,0 +1,86 @@
+
+.menu-bar {
+    display: inline-block;
+    background-color: #1d1d1d;
+    height: 50px;
+    width: 100%;
+    padding-left: 30%;
+    font-family: 'Zen Dots', cursive;
+}
+
+.menu-bar .menu-bar-item {
+    margin-top: 1px;
+    background-color: #1f1f1f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+
+.menu-bar .menu-bar-item:hover {
+    transition: all 700ms ease;
+    color: rgb(60, 73, 255);
+}
+
+.scroll-bar {
+    display: inline-block;
+    background: linear-gradient(to top,rgb(0, 0, 0) 96%, rgb(0, 17, 255) 99%, white);
+    height: 100px;
+    width: 100%;
+    backdrop-filter: blur(0px);
+    padding-left: 5%;
+    color: white;
+}
+
+.module-item {
+    color: white;
+    margin-top: 25px;
+    padding-top: 20px;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: rgb(20, 20, 20);
+    height: 400px;
+    width: 230px;
+    text-align: center;
+    opacity: 0.7;
+    vertical-align: middle;
+    cursor: pointer;
+    transform: perspective(400px) rotateY(35deg);
+    border-radius: 5%;
+    font-family: 'Zen Dots', cursive;
+    font-size: 12px;
+    border-width: 0px;
+    border-color: rgba(34, 37, 255, 0);
+    border-style: solid;
+    box-shadow: inset 0 0 0px #000;
+    border-image: linear-gradient(to left, rgba(0, 0, 0, 1) 1%, rgb(0, 17, 255) 50%, rgba(0, 0, 0, 1) 100%) 
+    100% 0 100% 0/0px 0 0px 0 stretch;
+}
+
+.module-item:hover {
+    opacity: 1;
+    background-color: rgb(20, 20, 20, 0);
+    transition: all 1000ms ease;
+    box-shadow: inset 0 0px 1px #000;
+    transform: perspective(400px) rotateY(0deg);
+    filter: blur(0px);
+    border-color:  rgba(0, 47, 255, 0.5);
+    border-width: 5px;
+    border-image: linear-gradient(to left, rgb(0, 0, 0) 1%, rgb(60, 73, 255) 30%,rgb(255, 255, 255) 50%,rgb(60, 73, 255) 70%, rgba(0, 0, 0, 1) 100%) 
+    100% 0 100% 0/3px 0 0px 0 stretch;
+    border-image-slice: 1;
+}
+
+.player-box {
+    display: block;
+	background: linear-gradient(to bottom, #000000, #222222);
+    color: white;
+    height: 700px;
+    width: 100%;
+    padding-left: 4%;
+}
