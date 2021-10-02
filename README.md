@@ -26,3 +26,14 @@ execute()
 <em>
   Nota: Te advertira sobre si deseas cancelar o continuar con la operación.
 </em>
+
+<strong>Crear usuario admin:</strong>
+
+Te permite crear un usuario para el panel /admin.
+
+<pre><code>python manage.py createsuperuser
+</code></pre>
+
+<em>
+  Nota: Debes seguir las instrucciones.
+</em>
