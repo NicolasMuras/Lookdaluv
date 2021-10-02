@@ -2,6 +2,16 @@
 def execute():
     from cards.models import Card, Module
 
+    print("[!] Se eliminara la base de datos y se volvera a crear con data predefinida.")
+    validacion = input("Continuar = 1 | Cancelar = 2: ")
+    
+    if validacion != "1":
+        print("[*] Se ha cancelado el script.")
+        return
+
+    Module.objects.all().delete()
+    Card.objects.all().delete()
+
     module_names = [1, 2, 3, 4, 5, 6]
 
     cards = [
@@ -11,7 +21,8 @@ def execute():
         [4, 'Su hombre GANADOR', 2, 'Así que allá va la primera pregunta: ¿te consideras un Ganador? Puede que ya lo seas y solo necesites enterarte. Quizá aún no hayas llegado ahí, pero con un poco de dedicación y constancia vas a adquirir la capacidad de «hacer como si lo fueras hasta que lo seas» de verdad.'],
     ]
     
-    if Module.objects.filter(module_type=1) is None:
+    if Module.objects.filter(module_type=1) != True:
+        
         for module_name in module_names:
 
             new_module = Module.objects.create()
@@ -20,13 +31,19 @@ def execute():
 
             new_module.save()
 
+        print("[+] Modulos creados...")
+
+    
     for card in cards:
-
-        new_card = Card.objects.create()
-
-        new_card.card_module = Module.objects.filter(card_module=card[0])
+        
+        module = Module.objects.filter(module_type=card[0]).first()
+        new_card = Card.objects.create(card_module=module)
+        
         new_card.title = card[1]
         new_card.rarity = card[2]
         new_card.description = card[3]
         
         new_card.save()
+
+    print("[+] Tarjetas creadas...")
+    print("[*] DONE !")

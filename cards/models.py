@@ -21,7 +21,7 @@ class Module(BaseModel):
         choices=ModuleTypes.choices,
         default=ModuleTypes.PERSONAL_GROWTH
     )
-    
+
     historical = HistoricalRecords()
 
     @property
@@ -39,7 +39,7 @@ class Module(BaseModel):
 
     def __str__(self):
 
-        return self.module_type
+        return str(self.get_module_type_display())
 
 
 class Card(BaseModel):

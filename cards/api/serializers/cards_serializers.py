@@ -5,8 +5,7 @@ from cards.api.serializers.generals_serializer import ModuleSerializer
 
 
 
-class CardListCreateUpdateSerializer(serializers.ModelSerializer):
-    
+class CardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
@@ -15,9 +14,9 @@ class CardListCreateUpdateSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         return {
             'id': instance.id,
-            'name': instance.title,
+            'title': instance.title,
             'description': instance.description,
             'completed': instance.completed,
-            'rarity': instance.rarity,
-            'card_module': instance.card_module.module_type,
+            'rarity': instance.get_rarity_display(),
+            'card_module': instance.card_module.__str__(),
         }
