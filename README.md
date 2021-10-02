@@ -55,6 +55,9 @@ createuser --interactive
 psql
 CREATE DATABASE lookdaluv;
 GRANT ALL PRIVILEGES ON DATABASE lookdaluv TO 'EL ROL RECIEN CREADO';
+exit
+exit
+python manage.py migrate_schemas
 </code></pre>
 
 <em>
