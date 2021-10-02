@@ -54,7 +54,7 @@ Instrucciones para la creación de la base de datos.
 createuser --interactive
 psql
 CREATE DATABASE lookdaluv;
-GRANT ALL PRIVILEGES ON DATABASE lookdaluv TO <EL ROL RECIEN CREADO>;
+GRANT ALL PRIVILEGES ON DATABASE lookdaluv TO 'EL ROL RECIEN CREADO';
 </code></pre>
 
 <em>
