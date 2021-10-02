@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn lookdaluv.wsgi --log-file -
