@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from simple_history.models import HistoricalRecords
 
-
-class MyAccountManager(BaseUserManager):
+class MyUserManager(BaseUserManager):
 
     def create_user(self, email, username, password=None):
         if not email:
@@ -35,7 +35,7 @@ def get_profile_image_filepath(self):
 def get_default_profile_image():
     return "profile_images/default_profile_photo.png"
 
-class Account(AbstractBaseUser):
+class User(AbstractBaseUser):
 
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
@@ -53,6 +53,8 @@ class Account(AbstractBaseUser):
         default=get_default_profile_image
         )
     hide_email = models.BooleanField(default=True)
+
+    historical = HistoricalRecords()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

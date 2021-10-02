@@ -16,14 +16,14 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 
-from users.models import Account
-from users.api.serializers.users_serializers import AccountSerializer
+from users.models import User
+from users.api.serializers.users_serializers import UserSerializer
 
 
 
-class AccountList(generics.ListCreateAPIView):
-    queryset = Account.objects.all()
-    serializer_class = AccountSerializer
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
     authentication_class = (TokenAuthentication,)
 
@@ -31,7 +31,7 @@ class AccountList(generics.ListCreateAPIView):
 class Login(FormView):
     template_name = "login.html"
     form_class = AuthenticationForm
-    success_url = reverse_lazy('users:account_list')
+    success_url = reverse_lazy('users:user_list')
 
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)

@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework.authtoken import views
+
 from users.api.views.users_views import Login, Logout
-from core.views import index, home, profile, user_dashboard
+from core.views import index, home, profile
+from users.views import Login, Logout
 
 
 
@@ -28,9 +30,9 @@ urlpatterns = [
     path('index/', index, name='index'),
     path('home/', home, name='home'),
     path('profile/<int:id>', profile),
-    path('user_dashboard/<int:id>', user_dashboard),
     path('api/', include(('users.api.urls', 'users'))),
     path('api_generate_token/', views.obtain_auth_token),
+    path('cards/', include('cards.api.urls')),
     path('login/', Login.as_view(), name='login'),
-    path('logout/', Logout.as_view(), name='logout')
+    path('logout/', Logout.as_view(), name='logout'),
 ]

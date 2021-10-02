@@ -1,0 +1,52 @@
+*{
+    background-color: black;
+}
+
+.box{
+    display: inline-block;
+    height: 99%;
+}
+
+#profile-box{ 
+    background-color: blue;
+    width: 24%;
+}
+
+#statistic-box{
+    background-color: red;
+    width: 75%;
+}
+
+.child-box{
+    display: block;
+}
+
+#child-1{
+    background-color: rgb(0, 255, 213);
+    width: 100%;
+    height: 50%;
+}
+
+#child-2{
+    background-color: rgb(46, 113, 139);
+    width: 100%;
+    height: 16%;
+}
+
+#child-3{
+    background-color: rgb(54, 139, 46);
+    width: 100%;
+    height: 34%;
+}
+
+#child-4{
+    background-color: rgb(139, 46, 103);
+    width: 100%;
+    height: 66%;
+}
+
+#child-5{
+    background-color: rgb(137, 139, 46);
+    width: 100%;
+    height: 34%;
+}

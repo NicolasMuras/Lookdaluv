@@ -20,9 +20,9 @@ def home(request):
     return render(request, 'home.html', context)
 
 def profile(request, id):
+    views = 5
 
-    return HttpResponse("ID: {}".format(id))
-
-def user_dashboard(request, id):
-
-    return HttpResponse("DASHBOARD for ID: {}".format(id))
+    context = {
+        'views': views,
+    }
+    return render(request, 'profile.html', context)
