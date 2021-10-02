@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import LoginForm
 
 def index(request):
     views = 5

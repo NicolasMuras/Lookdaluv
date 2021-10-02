@@ -22,7 +22,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from users.api.views.users_views import Login, Logout
 from core.views import index, home, profile
 from users.views import Login, Logout
 
