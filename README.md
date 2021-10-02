@@ -41,3 +41,22 @@ Te permite crear un usuario para el panel /admin.
 <em>
   Nota: Debes seguir las instrucciones.
 </em>
+
+<br>
+<br>
+<strong>Configurar Base de Datos:</strong>
+<br>
+<br>
+Instrucciones para la creación de la base de datos.
+<br>
+<br>
+<pre><code>sudo su postgres
+createuser --interactive
+psql
+CREATE DATABASE lookdaluv;
+GRANT ALL PRIVILEGES ON DATABASE lookdaluv TO <EL ROL RECIEN CREADO>;
+</code></pre>
+
+<em>
+  Nota: Para sistemas Linux.
+</em>
