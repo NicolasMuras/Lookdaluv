@@ -8,12 +8,31 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
+from users.authentication_mixins import Authentication
 from users.api.serializers.users_serializers import UserTokenSerializer
+
+
+
+class UserToken(Authentication, APIView):
+    def get (self, request, *args, **kwargs):
+        try:
+            user_token = Token.objects.get(user = self.user)
+            user = UserTokenSerializer(self.user)
+
+            return Response({
+                'token': user_token.key,
+                'user': user.data
+            })
+        except Exception:
+            return Response({
+                'error': '[!] Invalid credentials.'
+            }, status = status.HTTP_400_BAD_REQUEST)
 
 
 class Utils():
 
-    def delete_sessions(self, user):
+    @staticmethod
+    def delete_sessions(user):
         all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
         if all_sessions.exists():
             for session in all_sessions:
@@ -54,7 +73,7 @@ class Login(ObtainAuthToken, Utils):
             else:
                 return Response({'error':'[!] Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
         else:
-            return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status = status.HTTP_400_BAD_REQUEST)
+            return Response({'error':'[!] Nombre de usuario o contraseña incorrectos.'}, status = status.HTTP_400_BAD_REQUEST)
 
 
 class Logout(APIView, Utils):
@@ -68,16 +87,16 @@ class Logout(APIView, Utils):
                 user = token.user
                 self.delete_sessions(user)
                 token.delete()
-                session_message = '[*] Sesiones de usuario {} eliminadas.'
+                session_message = '[*] Sesiones de usuario {} eliminadas.'.format(user)
                 token_message = '[*] Token eliminado.'
                 return Response({
                     'token_message': token_message, 
                     'session_message': session_message
                     }, status = status.HTTP_200_OK)
 
-            return Response({'error':'No se ha encontrado un usuario con estas credenciales.'}, status = status.HTTP_400_BAD_REQUEST)
+            return Response({'error':'[!] No se ha encontrado un usuario con estas credenciales.'}, status = status.HTTP_400_BAD_REQUEST)
 
         except:
-            return Response({'error': 'No se ha encontrado token en la petición.'}, status = status.HTTP_409_CONFLICT)
+            return Response({'error': '[!] No se ha encontrado token en la petición.'}, status = status.HTTP_409_CONFLICT)
 
         

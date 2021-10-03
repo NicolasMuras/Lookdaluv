@@ -3,10 +3,11 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from cards.api.serializers.cards_serializers import CardSerializer
+from users.authentication_mixins import Authentication
 
 
 
-class CardViewSet(viewsets.ModelViewSet):
+class CardViewSet(Authentication, viewsets.ModelViewSet):
     serializer_class = CardSerializer
 
     def get_queryset(self, pk=None):
@@ -33,11 +34,12 @@ class CardViewSet(viewsets.ModelViewSet):
                 card_serializer.save()
                 return Response(card_serializer.data, status=status.HTTP_200_OK)
             return Response(card_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error':'[!] System error.'}, status=status.HTTP_502_BAD_GATEWAY)
 
     def destroy(self, request, pk=None):
         card = self.get_queryset().filter(id=pk).first()
         if card:
             card.state = False
             card.save()
-            return Response({'message':'Card deleted successfully.'}, status=status.HTTP_200_OK)
-        return Response({'error':"Doesn't exist a card with that information."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message':'[*] Card deleted successfully.'}, status=status.HTTP_200_OK)
+        return Response({'error':"[!] Doesn't exist a card with that information."}, status=status.HTTP_400_BAD_REQUEST)

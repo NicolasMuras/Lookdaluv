@@ -19,13 +19,12 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from rest_framework.authtoken import views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 from core.views import index, home, profile
-from users.views import Login, Logout
+from users.views import Login, Logout, UserToken
 
 
 
@@ -47,11 +46,11 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     url(r'^admin/', admin.site.urls),
-    path('index/', index, name='index'),
+    path('', index, name='index'),
     path('home/', home, name='home'),
     path('profile/<int:id>', profile),
-    path('api/', include(('users.api.urls', 'users'))),
-    path('api_generate_token/', views.obtain_auth_token),
+    path('users/', include(('users.api.urls', 'users'))),
+    path('refresh-token/', UserToken.as_view(), name='refresh-token'),
     path('cards/', include('cards.api.routers')),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
