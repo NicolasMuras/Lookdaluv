@@ -5,10 +5,10 @@ from rest_framework.response import Response
 from cards.models import Module
 from core.api import GeneralListAPIView
 from cards.api.serializers.generals_serializer import ModuleSerializer
+from users.authentication_mixins import Authentication
 
 
-
-class ModuleViewSet(viewsets.GenericViewSet):
+class ModuleViewSet(Authentication, viewsets.GenericViewSet):
     model = Module
     serializer_class = ModuleSerializer
 

@@ -23,7 +23,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from core.views import index, home, profile
+from core.views import Index, Home, Profile
 from users.views import Login, Logout, UserToken
 
 
@@ -46,9 +46,9 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     url(r'^admin/', admin.site.urls),
-    path('', index, name='index'),
-    path('home/', home, name='home'),
-    path('profile/<int:id>', profile),
+    path('', Index.as_view(), name='index'),
+    path('home/', Home.as_view(), name='home'),
+    path('profile/', Profile.as_view(), name='profile'),
     path('users/', include(('users.api.urls', 'users'))),
     path('refresh-token/', UserToken.as_view(), name='refresh-token'),
     path('cards/', include('cards.api.routers')),

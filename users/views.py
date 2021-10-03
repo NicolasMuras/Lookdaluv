@@ -76,7 +76,7 @@ class Login(ObtainAuthToken, Utils):
             return Response({'error':'[!] Nombre de usuario o contraseña incorrectos.'}, status = status.HTTP_400_BAD_REQUEST)
 
 
-class Logout(APIView, Utils):
+class Logout(Authentication, APIView, Utils):
 
     def post(self, request, *args, **kwargs):
         try:

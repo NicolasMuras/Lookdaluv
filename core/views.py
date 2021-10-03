@@ -1,27 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
-def index(request):
-    views = 5
+from users.authentication_mixins import Authentication
 
-    context = {
-        'views': views,
-    }
 
-    return render(request, 'index.html', context)
 
-def home(request):
-    views = 5
+class Index(TemplateView):
 
-    context = {
-        'views': views,
-    }
-    return render(request, 'home.html', context)
+    template_name = "index.html"
+    
 
-def profile(request, id):
-    views = 5
+class Home(Authentication, TemplateView):
 
-    context = {
-        'views': views,
-    }
-    return render(request, 'profile.html', context)
+    template_name = "home.html"
+
+
+class Profile(Authentication, TemplateView):
+
+    template_name = "profile.html"
+    
