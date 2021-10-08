@@ -1,6 +1,10 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from simple_history.models import HistoricalRecords
+
+
 
 class MyUserManager(BaseUserManager):
 
@@ -34,6 +38,7 @@ def get_profile_image_filepath(self):
 
 def get_default_profile_image():
     return "profile_images/default_profile_photo.png"
+
 
 class User(AbstractBaseUser):
 
@@ -70,3 +75,86 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
+
+
+class Profile(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', related_name='profile')
+
+    name = models.CharField(max_length=30, unique=False, null=False, blank=False)
+    last_name = models.CharField(max_length=30, unique=False, null=False, blank=False)
+    age = models.DateField(default=datetime.date.today)
+    nationality = models.CharField(max_length=30, unique=False, null=False, blank=False)
+    subscription_end_date = models.DateField(default=datetime.date.today)
+    level = models.IntegerField(default=1)
+
+    class Language(models.IntegerChoices):
+
+        ES_ES                   = 1, "es-es"
+        EN_US                   = 2, "en-us"
+
+
+    language = models.PositiveSmallIntegerField(
+        'Language', 
+        choices=Language.choices,
+        default=Language.ES_ES
+    )
+
+    class Rank(models.IntegerChoices):
+
+        SIMPL                   = 1, "SIMPL"
+        SEDUCER                 = 2, "Seducer"
+        KAIZEN_MIND             = 3, "Kaizen Mind"
+        CASANOVA                = 4, "Casanova"
+        AVEN                    = 5, "Aven"
+
+    rank = models.PositiveSmallIntegerField(
+        'Rank', 
+        choices=Rank.choices,
+        default=Rank.SIMPL
+    )
+
+    historical = HistoricalRecords()
+
+    @property
+    def _history_user(self):
+        return self.changed_by
+
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value
+
+    class Meta:
+
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
+
+    def __str__(self):
+        return self.user.__str__()
+
+
+class ProfileStatistics(models.Model):
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile', related_name='profilestatistics')
+
+    personal_growth_completed = models.IntegerField()
+    chatbot_completed = models.IntegerField()
+    simpl_deconstructor_completed = models.IntegerField()
+    date_simulation_completed = models.IntegerField()
+    sex_arts_completed = models.IntegerField()
+    environment_dominance_completed = models.IntegerField()
+
+    historical = HistoricalRecords()
+
+    @property
+    def _history_user(self):
+        return self.changed_by
+
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value
+
+    class Meta:
+
+        verbose_name = 'Profile Statistic'
+        verbose_name_plural = 'Profiles Statistics'

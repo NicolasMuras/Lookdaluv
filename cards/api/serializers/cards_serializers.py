@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from cards.models import Card
-from cards.api.serializers.generals_serializer import ModuleSerializer
 
 
 
@@ -14,7 +13,6 @@ class CardSerializer(serializers.ModelSerializer):
     def to_representation(self,instance):
         return {
             'id': instance.id,
-            'title': instance.title,
             'description': instance.description,
             'completed': instance.completed,
             'rarity': instance.get_rarity_display(),

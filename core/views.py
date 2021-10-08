@@ -8,8 +8,8 @@ from users.authentication_mixins import Authentication
 
 class Index(TemplateView):
 
-    template_name = "index.html"
-    
+    template_name = "chatbot.html"
+
 
 class Home(Authentication, TemplateView):
 

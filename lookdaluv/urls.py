@@ -50,8 +50,13 @@ urlpatterns = [
     path('home/', Home.as_view(), name='home'),
     path('profile/', Profile.as_view(), name='profile'),
     path('users/', include(('users.api.urls', 'users'))),
+    path('profiles/', include('users.api.routers')),
     path('refresh-token/', UserToken.as_view(), name='refresh-token'),
     path('cards/', include('cards.api.routers')),
+    path('chatbot/', include('contents_chatbot.api.routers')),
+    path('modules/', include('modules.api.routers')),
+    path('answers/', include('answers.api.routers')),
+    path('replys/', include('replys.api.routers')),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

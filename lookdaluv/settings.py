@@ -43,9 +43,14 @@ LOCAL_APPS = [
     'cards',
     'core',
     'users',
+    'contents_chatbot',
+    'answers',
+    'replys',
+    'modules'
 ]
 
-THIRD_APPS = [    
+THIRD_APPS = [
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'simple_history',
@@ -61,6 +66,7 @@ SWAGGER_SETTINGS = {
 TOKEN_EXPIRED_AFTER_SECONDS = 900
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,7 +102,8 @@ WSGI_APPLICATION = 'lookdaluv.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+
+DATABASES_PRODUCTION = {
 	'default': {
 		'ENGINE ': 'django.db.backends.postgresql_psycopg2',
 		'NAME' : os.environ.get('DATABASE_URL', ''),
@@ -151,5 +158,19 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ORIGIN_WHITELIST = [
+     "http://localhost:3000",
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.AllowAny',
+    ]
+}
 
 django_heroku.settings(locals())

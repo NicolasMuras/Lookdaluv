@@ -1,5 +1,8 @@
 from rest_framework import serializers
+
 from users.models import User
+from users.api.serializers.general_serializers import ProfileSerializer
+
 
 class UserTokenSerializer(serializers.ModelSerializer):
 
@@ -10,6 +13,8 @@ class UserTokenSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     
+    profile = ProfileSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
         fields = (
@@ -23,4 +28,5 @@ class UserSerializer(serializers.ModelSerializer):
             'is_superuser',
             'profile_image',
             'hide_email',
+            'profile',
         )

@@ -7,7 +7,7 @@ from users.authentication_mixins import Authentication
 
 
 
-class CardViewSet(Authentication, viewsets.ModelViewSet):
+class CardViewSet(viewsets.ModelViewSet):
     serializer_class = CardSerializer
 
     def get_queryset(self, pk=None):
