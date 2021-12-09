@@ -1,4 +1,3 @@
-
 def execute():
     from cards.models import Card, Module
 
@@ -15,12 +14,12 @@ def execute():
     module_names = [1, 2, 3, 4, 5, 6]
 
     cards = [
-        [1, 'Kaizen', 2, 'Pero ¿en qué consiste la estrategia Kaizen de mejora constante? «¡Hoy mejor que ayer, mañana mejor que hoy!» es el lema de este principio milenario. En otras palabras: las cosas siempre se pueden—y deben— hacer mejor. Por tanto, ni un solo día debería pasar sin llevar a cabo una cierta mejora.'],
-        [3, 'Introducción Artes Secretas', 1, 'No imaginas la de veces que metacharon de pirado. Por aquel entonces me hubiese conformado con que alguien me concediese que en la seducción existían pautas. Me habría contentado con que me dijesen: «Sí, Mario, yo también creo que el amor y la atracción son fenómenos que pueden estudiarse». Pero jamás ocurrió. Eran otros tiempos.'],
-        [2, 'LA META: ACTIVARSUPUNTO GG', 3, 'El león se queda hipnotizado contemplando a una gacela. Los pájaros se sienten impulsados a cantar por las mañanas. Las hormigas construyen hormigueros sin deliberarlo. Ya ti, que estás leyendo esto, se te dilatan las pupilas cuando te cruzas con ese pivonazo.'],
-        [4, 'Su hombre GANADOR', 2, 'Así que allá va la primera pregunta: ¿te consideras un Ganador? Puede que ya lo seas y solo necesites enterarte. Quizá aún no hayas llegado ahí, pero con un poco de dedicación y constancia vas a adquirir la capacidad de «hacer como si lo fueras hasta que lo seas» de verdad.'],
+        [1, 'Antes de tu primera entrevista', 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel tellus lorem. Aliquam ut tortor nisl. In pulvinar vitae libero nec condimentum. Proin sem mauris, iaculis nec orci vel, tincidunt faucibus nunc. Suspendisse in commodo est. Donec est augue, varius sed diam ut, convallis tempus metus. Vestibulum elementum condimentum mauris non tempor.'],
+        [3, 'En la entrevista', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel tellus lorem. Aliquam ut tortor nisl. In pulvinar vitae libero nec condimentum. Proin sem mauris, iaculis nec orci vel, tincidunt faucibus nunc. Suspendisse in commodo est. Donec est augue, varius sed diam ut, convallis tempus metus. Vestibulum elementum condimentum mauris non tempor.'],
+        [2, 'Tu tambien tienes un valor', 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel tellus lorem. Aliquam ut tortor nisl. In pulvinar vitae libero nec condimentum. Proin sem mauris, iaculis nec orci vel, tincidunt faucibus nunc. Suspendisse in commodo est. Donec est augue, varius sed diam ut, convallis tempus metus. Vestibulum elementum condimentum mauris non tempor.'],
+        [4, 'Errores comunes', 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel tellus lorem. Aliquam ut tortor nisl. In pulvinar vitae libero nec condimentum. Proin sem mauris, iaculis nec orci vel, tincidunt faucibus nunc. Suspendisse in commodo est. Donec est augue, varius sed diam ut, convallis tempus metus. Vestibulum elementum condimentum mauris non tempor.'],
     ]
-    
+
     if Module.objects.filter(module_type=1) != True:
         
         for module_name in module_names:

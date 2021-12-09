@@ -2,7 +2,7 @@ from django.db import models
 
 from simple_history.models import HistoricalRecords
 
-from contents_chatbot.models import ChatbotModule
+from contents_interview_simulator.models import InterviewSimulatorModule
 from core.models import BaseModel
 
 
@@ -16,11 +16,8 @@ class Answer(BaseModel):
         RATE_HER            = 4, "Rate Her"
         HOT                 = 5, "Hot"
         BORING              = 6, "Boring"
-        SIMPL               = 7, "SIMPL"
-        ROMANCE             = 8, "Romance"
         BUY                 = 9, "Buy"
-        DATE                = 10, "Date"
-        TRAP                = 11, "Trap"
+
         
     message = models.CharField('Message', max_length=100, blank = False, null = False)
     answer_category = models.PositiveSmallIntegerField(
@@ -29,7 +26,7 @@ class Answer(BaseModel):
         default=AnswerCategory.CONVERSATION_INIT
     )
 
-    chatbot_module = models.ForeignKey(ChatbotModule, on_delete=models.CASCADE, verbose_name='Chatbot Module')
+    interview_simulator_module = models.ForeignKey(InterviewSimulatorModule, on_delete=models.CASCADE, verbose_name='Interview Simulator Module')
 
     historical = HistoricalRecords()
 

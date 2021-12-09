@@ -3,27 +3,26 @@ from django.db import models
 from simple_history.models import HistoricalRecords
 
 from core.models import BaseModel
-
+from users.models import User
 
 
 class Module(BaseModel):
 
     class ModuleTypes(models.IntegerChoices):
-        PERSONAL_GROWTH         = 1, "Personal Growth"
-        CHAT_BOT                = 2, "Chat Bot"
-        SIMPL_DECONSTRUCTOR     = 3, "Simpl Deconstructor"
-        DATE_SIMULATION         = 4, "Date Simulation"
-        SEX_ARTS                = 5, "Sex Secrets"
-        ENVIRONMENT_DOMINANCE   = 6, "Environment Dominance"
+        INTERVIEW_SIMULATOR         = 1, "Interview Simulator"
+        WORKFLOW                    = 2, "Workflow"
+        DECONSTRUCTOR               = 3, "Deconstructor"
+        PORTFOLIO_BOOSTER           = 4, "Portfolio Booster"
 
     module_type = models.PositiveSmallIntegerField(
         'Module Type', 
         choices=ModuleTypes.choices,
-        default=ModuleTypes.PERSONAL_GROWTH
+        default=ModuleTypes.INTERVIEW_SIMULATOR
     )
 
     title = models.CharField('Title', max_length=100, blank = False, null = False)
     level = models.IntegerField(default=0, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', related_name='module')
 
     historical = HistoricalRecords()
 

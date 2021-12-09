@@ -23,8 +23,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from core.views import Index, Home, Profile
-from users.views import Login, Logout, UserToken
+from users.views import Login, Logout, UserToken, Register
 
 
 
@@ -45,18 +44,16 @@ urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    url(r'^admin/', admin.site.urls),
-    path('', Index.as_view(), name='index'),
-    path('home/', Home.as_view(), name='home'),
-    path('profile/', Profile.as_view(), name='profile'),
+    path('admin/', admin.site.urls),
     path('users/', include(('users.api.urls', 'users'))),
     path('profiles/', include('users.api.routers')),
     path('refresh-token/', UserToken.as_view(), name='refresh-token'),
     path('cards/', include('cards.api.routers')),
-    path('chatbot/', include('contents_chatbot.api.routers')),
+    path('interview-simulator/', include('contents_interview_simulator.api.routers')),
     path('modules/', include('modules.api.routers')),
     path('answers/', include('answers.api.routers')),
     path('replys/', include('replys.api.routers')),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
+    path('register/', Register.as_view(), name='register'),
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

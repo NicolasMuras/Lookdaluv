@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from contents_chatbot.models import InterviewSimulatorModuleStatistics
+from contents_interview_simulator.models import InterviewSimulatorModuleStatistics
 
 
 
@@ -16,7 +16,6 @@ class InterviewSimulatorModuleStatisticsSerializer(serializers.ModelSerializer):
             'completed': instance.completed,
             'max_step_reached': instance.max_step_reached,
             'value_generated': instance.value_generated,
-            'romance_generated': instance.romance_generated,
             'trap_passed': instance.trap_passed,
         }
 
@@ -31,6 +30,5 @@ class InterviewSimulatorModuleStatisticsMinimalSerializer(serializers.ModelSeria
             'completed': instance.completed,
             'max_step_reached': instance.max_step_reached,
             'value_generated': instance.value_generated,
-            'romance_generated': instance.romance_generated,
             'trap_passed': instance.trap_passed,
         }

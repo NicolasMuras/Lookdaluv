@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from users.models import Profile, ProfileStatistics
+from users.models import Profile, ProfileStatistics, User
 
 
 
@@ -14,12 +14,10 @@ class ProfileStatisticsSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'profile',
-            'personal_growth_completed', 
-            'chatbot_completed',
-            'simpl_deconstructor_completed',
-            'date_simulation_completed',
-            'sex_arts_completed',
-            'environment_dominance_completed',]
+            'interview_simulator_completed', 
+            'workflow_completed',
+            'deconstructor_completed',
+            'portfolio_booster_completed',]
  
     def get_profile(self, instance):
         return instance.__str__()
@@ -41,3 +39,39 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_language(self, instance):
         return instance.get_language_display()
 
+
+class RegisterUserSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(max_length=255, min_length=2)
+    last_name = serializers.CharField(max_length=255, min_length=2)
+
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name']
+
+    def validate(self, attrs):
+
+        email = attrs.get('email', '')
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError(
+                {'email': ('Email is already in use')})
+
+        username = attrs.get('username', '')
+        if User.objects.filter(username=username).exists():
+            raise serializers.ValidationError(
+                {'username': ('Username is already in use')})
+
+        return super().validate(attrs)
+
+    def create(self, validated_data):
+
+        first_name = validated_data.get('first_name', '')
+        last_name = validated_data.get('last_name', '')
+        username = validated_data.get('username', '')
+        email = validated_data.get('email', '')
+        password = validated_data.get('password', '')
+        nationality = "es-es"
+        user = User.objects.create_user(email=email, username=username)
+        user.set_password(password)
+        user.save()
+
+        return Profile.objects.create(user=user, first_name=first_name, last_name=last_name, nationality=nationality)

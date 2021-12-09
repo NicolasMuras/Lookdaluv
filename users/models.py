@@ -2,7 +2,11 @@ import datetime
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+
 from simple_history.models import HistoricalRecords
+
+from lookdaluv import settings
 
 
 
@@ -40,7 +44,7 @@ def get_default_profile_image():
     return "profile_images/default_profile_photo.png"
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
@@ -64,6 +68,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    objects = MyUserManager()
+
     def __str__(self):
         return self.username
 
@@ -79,9 +85,9 @@ class User(AbstractBaseUser):
 
 class Profile(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', related_name='profile')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='User', related_name='profile')
 
-    name = models.CharField(max_length=30, unique=False, null=False, blank=False)
+    first_name = models.CharField(max_length=30, unique=False, null=False, blank=False)
     last_name = models.CharField(max_length=30, unique=False, null=False, blank=False)
     age = models.DateField(default=datetime.date.today)
     nationality = models.CharField(max_length=30, unique=False, null=False, blank=False)
@@ -102,16 +108,16 @@ class Profile(models.Model):
 
     class Rank(models.IntegerChoices):
 
-        SIMPL                   = 1, "SIMPL"
-        SEDUCER                 = 2, "Seducer"
-        KAIZEN_MIND             = 3, "Kaizen Mind"
-        CASANOVA                = 4, "Casanova"
-        AVEN                    = 5, "Aven"
+        TRAINEE                   = 1, "Trainee"
+        JR                        = 2, "Jr"
+        SSR                       = 3, "Ssr"
+        SENIOR                    = 4, "Senior"
+
 
     rank = models.PositiveSmallIntegerField(
         'Rank', 
         choices=Rank.choices,
-        default=Rank.SIMPL
+        default=Rank.TRAINEE
     )
 
     historical = HistoricalRecords()
@@ -137,12 +143,10 @@ class ProfileStatistics(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile', related_name='profilestatistics')
 
-    personal_growth_completed = models.IntegerField()
-    chatbot_completed = models.IntegerField()
-    simpl_deconstructor_completed = models.IntegerField()
-    date_simulation_completed = models.IntegerField()
-    sex_arts_completed = models.IntegerField()
-    environment_dominance_completed = models.IntegerField()
+    interview_simulator_completed = models.IntegerField()
+    workflow_completed = models.IntegerField()
+    deconstructor_completed = models.IntegerField()
+    portfolio_booster_completed = models.IntegerField()
 
     historical = HistoricalRecords()
 

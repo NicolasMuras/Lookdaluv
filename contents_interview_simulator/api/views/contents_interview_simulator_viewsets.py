@@ -1,4 +1,4 @@
-from contents_chatbot.api.serializers.contents_chatbot_serializers import InterviewSimulatorModuleSerializer
+from contents_interview_simulator.api.serializers.contents_interview_simulator_serializers import InterviewSimulatorModuleSerializer
 
 from modules.api.views.general_views import GeneralViewSet
 

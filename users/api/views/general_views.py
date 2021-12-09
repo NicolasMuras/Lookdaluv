@@ -9,6 +9,7 @@ class ProfileViewSet(GeneralViewSet):
 
     model_to_format = ProfileSerializer.Meta.model
 
+
 class ProfileStatisticsViewSet(GeneralViewSet):
     serializer_class = ProfileStatisticsSerializer
 

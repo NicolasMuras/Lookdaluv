@@ -53,7 +53,6 @@ class InterviewSimulatorModuleStatistics(BaseModel):
     completed = models.BooleanField(blank=False, null=False, default=False)
     max_step_reached = models.IntegerField(default=1)
     value_generated = models.IntegerField(default=1)
-    romance_generated = models.IntegerField(default=1)
     trap_passed = models.BooleanField(blank=True, null=False, default=False)
 
     historical = HistoricalRecords()

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from contents_chatbot.models import InterviewSimulatorModule
-from contents_chatbot.api.serializers.general_serializers import InterviewSimulatorModuleStatisticsMinimalSerializer
+from contents_interview_simulator.models import InterviewSimulatorModule
+from contents_interview_simulator.api.serializers.general_serializers import InterviewSimulatorModuleStatisticsMinimalSerializer
 
 
 

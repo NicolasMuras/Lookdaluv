@@ -1,5 +1,5 @@
 from django.contrib import admin
-from contents_chatbot.models import InterviewSimulatorModule, InterviewSimulatorModuleStatistics
+from contents_interview_simulator.models import InterviewSimulatorModule, InterviewSimulatorModuleStatistics
 
 
 
@@ -8,7 +8,7 @@ class InterviewSimulatorModuleAdmin(admin.ModelAdmin):
 
 
 class InterviewSimulatorModuleStatisticsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'module', 'completed', 'max_step_reached', 'value_generated', 'romance_generated')
+    list_display = ('id', 'module', 'completed', 'max_step_reached', 'value_generated')
 
 admin.site.register(InterviewSimulatorModule, InterviewSimulatorModuleAdmin)
 admin.site.register(InterviewSimulatorModuleStatistics, InterviewSimulatorModuleStatisticsAdmin)
