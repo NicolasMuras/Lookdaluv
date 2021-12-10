@@ -23,7 +23,7 @@ Lookdaluv es la plataforma de aprendizaje interactivo de proposito general, esta
 <li><strong>Heroku</strong>: Utilizamos Heroku para el deploy del sitio y una mejor gestion de la plataforma.</li>
 </ul>
 
-Contamos con un sistema de autenticación y sesiones con tokens que protege ciertas vistas en la plataforma, ademas los tokens cuentan con su propio tiempo de expiración.
+Contamos con un sistema de autenticación y sesiones con tokens, los tokens cuentan con su propio tiempo de expiración.
 
 Utilizamos Swagger para auto-documentar las APIs de la plataforma.
 
