@@ -93,8 +93,9 @@ class Logout(Authentication, APIView, Utils):
 
     def post(self, request, *args, **kwargs):
         try:
-            token = request.GET.get('token')
-            token = Token.objects.filter(key = token).first()
+            user = request.GET.get('user')
+            token = Token.objects.get(user=self.user)
+
             if token:
 
                 user = token.user
