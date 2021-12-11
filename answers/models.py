@@ -2,7 +2,7 @@ from django.db import models
 
 from simple_history.models import HistoricalRecords
 
-from contents_interview_simulator.models import InterviewSimulatorModule
+from module_question.models import QuestionModule
 from core.models import BaseModel
 
 
@@ -12,11 +12,12 @@ class Answer(BaseModel):
 
         CONVERSATION_INIT   = 1, "Conversation Init"
         VALUE               = 2, "Generate Value"
-        CUALIFICATION       = 3, "Make Her Qualify"
-        RATE_HER            = 4, "Rate Her"
-        HOT                 = 5, "Hot"
+        CUALIFICATION       = 3, "Make They Qualify"
+        RATE                = 4, "Rate"
+        MISTAKE             = 5, "Mistake"
         BORING              = 6, "Boring"
-        BUY                 = 9, "Buy"
+        ENERGY              = 7, "Energy"
+        INSECURE            = 8, "Insecure"
 
         
     message = models.CharField('Message', max_length=100, blank = False, null = False)
@@ -26,7 +27,7 @@ class Answer(BaseModel):
         default=AnswerCategory.CONVERSATION_INIT
     )
 
-    interview_simulator_module = models.ForeignKey(InterviewSimulatorModule, on_delete=models.CASCADE, verbose_name='Interview Simulator Module')
+    question_module = models.ForeignKey(QuestionModule, on_delete=models.CASCADE, verbose_name='Interview Simulator Module')
 
     historical = HistoricalRecords()
 

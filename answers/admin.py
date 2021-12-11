@@ -4,6 +4,6 @@ from answers.models import Answer
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'message', 'answer_category', 'interview_simulator_module')
+    list_display = ('id', 'message', 'answer_category', 'question_module')
 
 admin.site.register(Answer, AnswerAdmin)

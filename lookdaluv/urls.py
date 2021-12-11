@@ -49,7 +49,7 @@ urlpatterns = [
     path('profiles/', include('users.api.routers')),
     path('refresh-token/', UserToken.as_view(), name='refresh-token'),
     path('cards/', include('cards.api.routers')),
-    path('interview-simulator/', include('contents_interview_simulator.api.routers')),
+    path('question/', include('module_question.api.routers')),
     path('modules/', include('modules.api.routers')),
     path('answers/', include('answers.api.routers')),
     path('replys/', include('replys.api.routers')),

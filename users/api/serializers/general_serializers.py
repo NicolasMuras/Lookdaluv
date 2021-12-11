@@ -14,10 +14,10 @@ class ProfileStatisticsSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'profile',
-            'interview_simulator_completed', 
+            'question_completed', 
             'workflow_completed',
             'deconstructor_completed',
-            'portfolio_booster_completed',]
+            'image_comparision_completed',]
  
     def get_profile(self, instance):
         return instance.__str__()

@@ -19,7 +19,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class ProfileStatisticsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'profile', 'interview_simulator_completed', 'workflow_completed', 'deconstructor_completed', 'portfolio_booster_completed')
+    list_display = ('id', 'profile', 'question_completed', 'workflow_completed', 'deconstructor_completed', 'image_comparision_completed')
 
 
 admin.site.register(User, UserAdmin)

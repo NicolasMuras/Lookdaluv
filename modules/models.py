@@ -9,15 +9,15 @@ from users.models import User
 class Module(BaseModel):
 
     class ModuleTypes(models.IntegerChoices):
-        INTERVIEW_SIMULATOR         = 1, "Interview Simulator"
+        QUESTION                    = 1, "Question"
         WORKFLOW                    = 2, "Workflow"
         DECONSTRUCTOR               = 3, "Deconstructor"
-        PORTFOLIO_BOOSTER           = 4, "Portfolio Booster"
+        IMAGE_COMPARISION           = 4, "Image Comparision"
 
     module_type = models.PositiveSmallIntegerField(
         'Module Type', 
         choices=ModuleTypes.choices,
-        default=ModuleTypes.INTERVIEW_SIMULATOR
+        default=ModuleTypes.QUESTION
     )
 
     title = models.CharField('Title', max_length=100, blank = False, null = False)

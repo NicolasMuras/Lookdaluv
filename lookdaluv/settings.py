@@ -44,7 +44,7 @@ LOCAL_APPS = [
     'cards',
     'core',
     'users',
-    'contents_interview_simulator',
+    'module_question',
     'answers',
     'replys',
     'modules'

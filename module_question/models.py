@@ -7,7 +7,7 @@ from modules.models import Module
 
 
 
-class InterviewSimulatorModule(Module):
+class QuestionModule(Module):
 
     class Difficult(models.IntegerChoices):
 
@@ -38,17 +38,17 @@ class InterviewSimulatorModule(Module):
 
     class Meta:
 
-        verbose_name = 'Interview Simulator Module'
-        verbose_name_plural = 'Interview Simulator Modules'
+        verbose_name = 'Question Module'
+        verbose_name_plural = 'Question Modules'
 
     def __str__(self):
 
         return self.title
 
 
-class InterviewSimulatorModuleStatistics(BaseModel):
+class QuestionModuleStatistics(BaseModel):
 
-    module = models.ForeignKey(InterviewSimulatorModule, on_delete=models.CASCADE, verbose_name='Module', related_name='statistics')
+    module = models.ForeignKey(QuestionModule, on_delete=models.CASCADE, verbose_name='Module', related_name='statistics')
 
     completed = models.BooleanField(blank=False, null=False, default=False)
     max_step_reached = models.IntegerField(default=1)
@@ -67,8 +67,8 @@ class InterviewSimulatorModuleStatistics(BaseModel):
 
     class Meta:
 
-        verbose_name = 'Interview Simulator Statistic'
-        verbose_name_plural = 'Interview Simulator Statistics'
+        verbose_name = 'Question Statistic'
+        verbose_name_plural = 'Question Statistics'
 
     def __str__(self):
 

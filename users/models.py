@@ -143,10 +143,10 @@ class ProfileStatistics(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile', related_name='profilestatistics')
 
-    interview_simulator_completed = models.IntegerField()
+    question_completed = models.IntegerField()
     workflow_completed = models.IntegerField()
     deconstructor_completed = models.IntegerField()
-    portfolio_booster_completed = models.IntegerField()
+    image_comparision_completed = models.IntegerField()
 
     historical = HistoricalRecords()
 

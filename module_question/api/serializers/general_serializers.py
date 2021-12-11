@@ -1,13 +1,13 @@
 from rest_framework import serializers
 
-from contents_interview_simulator.models import InterviewSimulatorModuleStatistics
+from module_question.models import QuestionModuleStatistics
 
 
 
-class InterviewSimulatorModuleStatisticsSerializer(serializers.ModelSerializer):
+class QuestionModuleStatisticsSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = InterviewSimulatorModuleStatistics
+        model = QuestionModuleStatistics
         exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
  
     def to_representation(self, instance):
@@ -19,10 +19,10 @@ class InterviewSimulatorModuleStatisticsSerializer(serializers.ModelSerializer):
             'trap_passed': instance.trap_passed,
         }
 
-class InterviewSimulatorModuleStatisticsMinimalSerializer(serializers.ModelSerializer):
+class QuestionModuleStatisticsMinimalSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = InterviewSimulatorModuleStatistics
+        model = QuestionModuleStatistics
         exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
  
     def to_representation(self, instance):
