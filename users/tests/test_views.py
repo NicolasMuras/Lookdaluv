@@ -7,7 +7,7 @@ from rest_framework.test import APIRequestFactory, force_authenticate, APIClient
 
 
 class TestViews(TestCase):
-    
+
     def test_user_register(self):
         factory = APIRequestFactory()
         request = factory.post('/register/', {
